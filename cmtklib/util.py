@@ -138,7 +138,7 @@ def return_button_style_sheet(image, image_disabled=None, verbose=False):  # pra
         button_style_sheet = f"""
             QPushButton {{
                     border-radius: 2px;
-                    border-image: url({image}) 0 0 0 0;
+                    border-image: url({Path(image).as_posix()}) 0 0 0 0;
                     color: transparent;
                     background-color: transparent;
                     font: 12pt "Verdana";
@@ -154,7 +154,7 @@ def return_button_style_sheet(image, image_disabled=None, verbose=False):  # pra
         button_style_sheet = f"""
                 QPushButton {{
                         border-radius: 2px;
-                        border-image: url({image}) 0 0 0 0;
+                        border-image: url({Path(image).as_posix()}) 0 0 0 0;
                         color: transparent;
                         background-color: transparent;
                         font: 12pt "Verdana";
@@ -163,7 +163,7 @@ def return_button_style_sheet(image, image_disabled=None, verbose=False):  # pra
                 }}
                 QPushButton:disabled {{
                         border-radius: 2px;
-                        border-image: url({image_disabled}) 0 0 0 0;
+                        border-image: url({Path(image_disabled).as_posix()}) 0 0 0 0;
                         color: transparent;
                         background-color: transparent;
                         font: 12pt "Verdana";
