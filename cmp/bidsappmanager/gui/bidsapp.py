@@ -796,7 +796,7 @@ class BIDSAppInterfaceWindow(HasTraits):
 
         # fmt: off
         cmd = [
-            "docker", "run", "-it", "--rm",
+            "docker", "run", "-i", "--rm",
             "-v", f"{self.bids_root}:/bids_dir",
             "-v", f"{self.output_dir}:/output_dir",
             "-v", f"{self.fs_license}:/bids_dir/code/license.txt",
