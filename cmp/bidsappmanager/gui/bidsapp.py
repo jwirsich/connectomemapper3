@@ -816,8 +816,8 @@ class BIDSAppInterfaceWindow(HasTraits):
             cmd.append("-v")
             cmd.append(f"{self.eeg_config}:/code/ref_EEG_config.json")
 
-        cmd.append("-u")
-        cmd.append(f"{os.geteuid()}:{os.getegid()}")
+        # cmd.append("-u")
+        # cmd.append(f"{os.geteuid()}:{os.getegid()}")
 
         cmd.append(f"sebastientourbier/connectomemapper-bidsapp:{bidsapp_tag}")
         cmd.append("/bids_dir")

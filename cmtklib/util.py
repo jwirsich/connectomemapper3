@@ -419,7 +419,8 @@ def get_pipeline_dictionary_outputs(
                 break
 
     # Convert the extracted JSON-structured string to a dictionary
-    dict_outputs = json.loads("{}".format(str_outputs))
+    # dict_outputs = json.loads("{}".format(str_outputs))
+    dict_outputs = fix_JSON("{}".format(str_outputs))
     if debug:  # pragma: no cover
         print("Dictionary of datasink outputs: {}".format(dict_outputs))
     return dict_outputs
@@ -488,3 +489,21 @@ def find_toolbox_derivatives_containing_file(bids_dir, fname, debug=False):
                 return toolbox_derivatives_dirname
     # Raise exception if no file is found
     raise FileNotFoundError(f"No file {fname} was found in directory {deriv_dir}")
+
+
+def fix_JSON(json_message=None):
+    # try:
+    #     result = json.loads(json_message)
+    # except Exception as e:
+
+    indexs = [i for i, char in enumerate(json_message) if char == "\\"]
+
+    if indexs:
+
+        temp = list(json_message)
+
+        for idx in indexs:
+            temp[idx] = '/'
+        new_message = ''.join(temp)
+        return fix_JSON(json_message=new_message)
+    return json.loads(json_message)

@@ -300,3 +300,4 @@ class MainWindow(HasTraits):
             self.quality_control_ui.configure_traits()
         except Exception as e:
             print(e)
+            raise e

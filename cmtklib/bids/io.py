@@ -127,8 +127,8 @@ class CustomBIDSFile(HasTraits):
         return msg
 
     def _string2dict(self):
-        return json.loads(self.__str__())
-
+        # return json.loads(self.__str__())
+        return fix_JSON(self.__str__())
     def get_query_dict(self):
         """Return the dictionary to be passed to `BIDSDataGrabber` to query a list of files."""
         query_dict = self._string2dict()
@@ -388,3 +388,21 @@ class CustomEEGCartoolInvSolBIDSFile(CustomBIDSFile):
         """Update extension when esi method is modified."""
         self.extension = f"{new}.is"
 
+
+def fix_JSON(json_message=None):
+
+    # try:
+    #     result = json.loads(json_message)
+    # except Exception as e:
+
+    indexs = [i for i, char in enumerate(json_message) if char == "\\"]
+
+    if indexs:
+
+        temp = list(json_message)
+
+        for idx in indexs:
+            temp[idx] = '/'
+        new_message = ''.join(temp)
+        return fix_JSON(json_message=new_message)
+    return json.loads(json_message)
